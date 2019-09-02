@@ -29,7 +29,9 @@ class Chromosome {
     } 
 
     mutate() {
-        if (this.mutationRate > Math.random()) return;
+        const mutationChance = 0.5 || Math.random();
+
+        if (this.mutationRate >= mutationChance) return;
 
         const index = Math.floor(Math.random() * this.value.length);
         const mutation = this.allowedChars[(Math.floor(Math.random() * this.allowedChars.length))];
@@ -80,7 +82,7 @@ class Population {
         while (populationSize--) {
             const chromosome = new Chromosome({
                 mutationRate: Math.random(),
-                cost: Math.floor(Math.random() * Math.floor(1000)),
+                cost: Math.floor(Math.random() * 1000),
                 size: this.target.length
             });
 
@@ -109,9 +111,12 @@ class Population {
         this.sort();
         this.showGeneration();
 
-        const parent1 = 0;
-        const parent2 = 1;
-        const offsprings = this.chromosomes[parent1].crossover(this.chromosomes[parent2]);
+        const crossoverChance = 0.5 || Math.random();
+        const bestParent = 0;
+        let randomParent = Math.floor(Math.random() * this.chromosomes.length);
+        randomParent = randomParent > 0 && Math.random() >crossoverChance ? randomParent : 1;
+
+        const offsprings = this.chromosomes[bestParent].crossover(this.chromosomes[randomParent]);
 
         this.chromosomes.splice(this.chromosomes.length - 2, 2, offsprings[0], offsprings[1]);
 
@@ -121,9 +126,6 @@ class Population {
             this.chromosomes[i].computeCost(this.target);
 
             if(this.chromosomes[i].value != this.target) {
-                // this.sort();
-                // this.showGeneration();
-                
                 perfectGeneration = false;
             }
         }
