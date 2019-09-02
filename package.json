@@ -1,7 +1,7 @@
 {
   "name": "genetic-world",
   "version": "1.0.0",
-  "description": "An opensource application to implement genetic algorithm for Hello World.",
+  "description": "An opensource application to implement Genetic Algorithm for Hello World.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
