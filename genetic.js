@@ -111,10 +111,10 @@ class Population {
         this.sort();
         this.showGeneration();
 
-        const crossoverChance = 0.5 || Math.random();
+        const crossoverChance = 0.8 || Math.random();
         const bestParent = 0;
         let randomParent = Math.floor(Math.random() * this.chromosomes.length);
-        randomParent = randomParent > 0 && Math.random() >crossoverChance ? randomParent : 1;
+        randomParent = randomParent > 0 && Math.random() > crossoverChance ? randomParent : 1;
 
         const offsprings = this.chromosomes[bestParent].crossover(this.chromosomes[randomParent]);
 

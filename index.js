@@ -1,7 +1,7 @@
 const { Population } = require('./genetic');
 
-const target = "Hello World!";
-const populationSize = 5;
+const target = "We see things they'll never see";
+const populationSize = 10;
 
 let population = new Population(target, populationSize);
 population.populate();
