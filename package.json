@@ -1,0 +1,19 @@
+{
+  "name": "genetic-world",
+  "version": "1.0.0",
+  "description": "An opensource application to implement genetic algorithm for Hello World.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pupupulp/genetic-world.git"
+  },
+  "author": "Eagan Martin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pupupulp/genetic-world/issues"
+  },
+  "homepage": "https://github.com/pupupulp/genetic-world#readme"
+}
