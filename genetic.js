@@ -13,7 +13,7 @@ class Chromosome {
         
         this.allowedChars = lowercase + uppercase + numeric + symbols;
         
-        if(config.value) {
+        if (config.value) {
             this.value = config.value;
         } else {
             this.randomizeValue(this.size);
@@ -46,17 +46,17 @@ class Chromosome {
 
         const offspringCost = (this.cost + partner.cost) / 2;
         const offspringLength = this.value.length;
-        const parentsMutationRate = (this.mutationRate + partner.mutationRate) / crossoverRate;
+        const parentsMutationRate = (this.mutationRate + partner.mutationRate) / 2;
 
         const offspring1 = {
-            mutationRate: (Math.random() + parentsMutationRate) / crossoverRate,
+            mutationRate: (Math.random() + parentsMutationRate) / 2,
             cost: offspringCost,
             size: offspringLength,
             value: this.value.substr(0, pivot) + partner.value.substr(pivot)
         };
 
         const offspring2 = {
-            mutationRate: (Math.random() + parentsMutationRate) / crossoverRate,
+            mutationRate: (Math.random() + parentsMutationRate) / 2,
             cost: offspringCost,
             size: offspringLength,
             value: partner.value.substr(0, pivot) + this.value.substr(pivot)
@@ -77,7 +77,7 @@ class Population {
         this.target = target;
         this.generationNo = 0;
 
-        while(populationSize--) {
+        while (populationSize--) {
             const chromosome = new Chromosome({
                 mutationRate: Math.random(),
                 cost: Math.floor(Math.random() * Math.floor(1000)),
@@ -102,7 +102,7 @@ class Population {
     }
 
     populate() {
-        for(let i = 0; i < this.chromosomes.length; i++) {
+        for (let i = 0; i < this.chromosomes.length; i++) {
             this.chromosomes[i].computeCost(this.target);
         }
 
@@ -116,7 +116,7 @@ class Population {
         this.chromosomes.splice(this.chromosomes.length - 2, 2, offsprings[0], offsprings[1]);
 
         let perfectGeneration = true;
-        for(let i = 0; i < this.chromosomes.length; i++) {
+        for (let i = 0; i < this.chromosomes.length; i++) {
             this.chromosomes[i].mutate();
             this.chromosomes[i].computeCost(this.target);
 
@@ -128,7 +128,7 @@ class Population {
             }
         }
 
-        if(perfectGeneration) {
+        if (perfectGeneration) {
             this.sort();
             this.showGeneration();
         } else {
