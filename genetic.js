@@ -39,25 +39,24 @@ class Chromosome {
     }
 
     crossover(partner) {
-        let randomizer = Math.floor(Math.random() * partner.length);
-        // randomizer = randomizer > 0 ? randomizer : 2;
-        randomizer = 2;
+        let crossoverRate = Math.floor(Math.random() * partner.length);
+        crossoverRate = crossoverRate > 0 ? crossoverRate : 2;
 
-        const pivot = Math.round(this.value.length / randomizer) - 1;
+        const pivot = Math.round(this.value.length / crossoverRate) - 1;
 
         const offspringCost = (this.cost + partner.cost) / 2;
         const offspringLength = this.value.length;
-        const parentsMutationRate = (this.mutationRate + partner.mutationRate) / 2;
+        const parentsMutationRate = (this.mutationRate + partner.mutationRate) / crossoverRate;
 
         const offspring1 = {
-            mutationRate: (Math.random() + parentsMutationRate) / 2,
+            mutationRate: (Math.random() + parentsMutationRate) / crossoverRate,
             cost: offspringCost,
             size: offspringLength,
             value: this.value.substr(0, pivot) + partner.value.substr(pivot)
         };
 
         const offspring2 = {
-            mutationRate: (Math.random() + parentsMutationRate) / 2,
+            mutationRate: (Math.random() + parentsMutationRate) / crossoverRate,
             cost: offspringCost,
             size: offspringLength,
             value: partner.value.substr(0, pivot) + this.value.substr(pivot)
