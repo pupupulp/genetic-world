@@ -31,7 +31,7 @@ class Chromosome {
     mutate() {
         const mutationChance = 0.5 || Math.random();
 
-        if (this.mutationRate >= mutationChance) return;
+        if (this.mutationRate < mutationChance) return;
 
         const index = Math.floor(Math.random() * this.value.length);
         const mutation = this.allowedChars[(Math.floor(Math.random() * this.allowedChars.length))];
@@ -111,7 +111,7 @@ class Population {
         this.sort();
         this.showGeneration();
 
-        const crossoverChance = 0.8 || Math.random();
+        const crossoverChance = 0.5 || Math.random();
         const bestParent = 0;
         let randomParent = Math.floor(Math.random() * this.chromosomes.length);
         randomParent = randomParent > 0 && Math.random() > crossoverChance ? randomParent : 1;
